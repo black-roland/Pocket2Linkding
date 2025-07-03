@@ -23,7 +23,6 @@ from datetime import datetime
 from pathlib import Path
 from typing import Iterator
 
-
 import attrs
 from unidecode import unidecode
 
@@ -156,9 +155,10 @@ class CSVRecord:
 
     @property
     def as_html(self):
+        toread = "1" if self.status == "unread" else "0"
         return (
             f'\n<DT><A HREF="{self.clean_url}" ADD_DATE="{self.time_added}" '
-            f'LAST_MODIFIED="{self.time_added}" PRIVATE="1" TOREAD="1" '
+            f'LAST_MODIFIED="{self.time_added}" PRIVATE="1" TOREAD="{toread}" '
             f'TAGS="{",".join(self.tags)}">{self.clean_title}</A>\n'
         )
 
