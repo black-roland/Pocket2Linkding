@@ -156,12 +156,14 @@ class CSVRecord:
     @property
     def as_html(self):
         toread = "1" if self.status == "unread" else "0"
+        tags = self.tags.copy()
+        if self.status == "archive":
+            tags.append("linkding:bookmarks.archived")
         return (
             f'\n<DT><A HREF="{self.clean_url}" ADD_DATE="{self.time_added}" '
             f'LAST_MODIFIED="{self.time_added}" PRIVATE="1" TOREAD="{toread}" '
-            f'TAGS="{",".join(self.tags)}">{self.clean_title}</A>\n'
+            f'TAGS="{",".join(tags)}">{self.clean_title}</A>\n'
         )
-
 
 @attrs.define
 class CSVFile:
