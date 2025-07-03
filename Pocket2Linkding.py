@@ -147,7 +147,7 @@ class CSVRecord:
 
     @property
     def clean_title(self):
-        return unidecode(self.title)
+        return self.title
 
     @property
     def clean_url(self):
